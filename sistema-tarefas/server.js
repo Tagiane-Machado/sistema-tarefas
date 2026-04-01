@@ -1,6 +1,12 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+
 const app = express();
 
+// middlewares
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
 
 let tarefas = [];
@@ -32,7 +38,7 @@ app.get("/tarefas", (req, res) => {
   res.json(tarefas);
 });
 
-// ATUALIZAR MIUNHA PARTE
+// Atualizar tarefa
 app.put("/tarefas/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const { nome, status } = req.body;
@@ -61,7 +67,7 @@ app.put("/tarefas/:id", (req, res) => {
   res.json(tarefa);
 });
 
-// DELETAR MINHA PARTE
+// Deletar tarefa
 app.delete("/tarefas/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
